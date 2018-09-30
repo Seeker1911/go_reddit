@@ -9,20 +9,18 @@ import (
 
 type Item struct {
 	Title string
-	URL string
+	URL   string
 }
 
 type Response struct {
-	Data struct{
+	Data struct {
 		Children []struct {
 			Data Item
 		}
 	}
 }
 
-
-
-func main()  {
+func main() {
 	resp, err := http.Get("http://reddit.com/r/golang.json")
 	if err != nil {
 		log.Fatal(err)
@@ -33,6 +31,7 @@ func main()  {
 
 	r := new(Response)
 	err = json.NewDecoder(resp.Body).Decode(r)
+
 	if err != nil {
 		log.Fatal(err)
 	}
